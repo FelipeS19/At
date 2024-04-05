@@ -1,0 +1,28 @@
+﻿.conteiner-delete {
+    width: 82vw; /* Adiciona 1.6rem de espaço ao redor do .infos */
+    height: 80vh; /* Adiciona 1.6rem de espaço ao redor do .infos */
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: 10px;
+    opacity: 0; /* Começa com opacidade 0 para parecer que está surgindo */
+    transform: translateY(20px); /* Começa um pouco abaixo para parecer que está surgindo */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Adiciona transições para opacidade e transformação */
+}
+
+/* Adiciona a classe 'show' para fazer o contêiner aparecer */
+    .conteiner-delete.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+.infos {
+    width: 95%;
+    height: auto; /* Ajusta a altura para 95% para manter um espaço ao redor */
+    margin: .8rem auto;
+    background-color: #fffb;
+    border-radius: 10px;
+}
+.detalhes {
+    width: 100%;
+    margin:.8rem auto;
+}

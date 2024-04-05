@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<body class="full-screen">
+    <div class="text-overlay id=" textOverlay">
+        <h1 class="display-4">Bem Vindo a central de Funcionarios</h1>
+        <p>Aqui você pode fazer o gerenciamento dos funcionários e também dos departamentos</p>
+    </div>
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var textOverlay = document.querySelector(".text-overlay");
+        textOverlay.classList.add("show");
+    });
+</script>

@@ -1,0 +1,103 @@
+﻿@model InfnetMVC.Models.Funcionario
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<body class="body2">
+    <div class="conteineres">
+
+
+        <div class="form-image">
+            <img src="~/images/edit.svg" alt="insert" />
+        </div>
+
+        <div class="formi">
+            <form asp-action="Edit" method="post">
+                <div asp-validation-summary="ModelOnly"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-header">
+
+                    <div class="titulo">
+                        <h1>Funcionarios</h1>
+                    </div>
+
+                    <div class="voltar">
+                        <button id="btnVoltar"><a asp-action="Index">Voltar</a></button>
+                    </div>
+                </div>
+                <div class="input-group">
+
+                    <div class="input-boxis">
+                        <label asp-for="Nome"></label>
+                        <input asp-for="Nome" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+
+                    <div class="input-boxis">
+                        <label asp-for="DepartamentoId" class="control-label"></label>
+                        <select asp-for="DepartamentoId" class="form-control" asp-items="@(ViewBag.Departamentos != null ? new SelectList(ViewBag.Departamentos, "Id", "Nome") : new SelectList(new List<SelectListItem>()))">
+                            <option value="">Selecione um departamento</option>
+                        </select>
+                        <span asp-validation-for="DepartamentoId" class="text-danger"></span>
+                    </div>
+                    <div class="input-boxis">
+                        <label asp-for="Endereco"></label>
+                        <input asp-for="Endereco" />
+                        <span asp-validation-for="Endereco" class="text-danger"></span>
+                    </div>
+
+                    <div class="input-boxis">
+                        <label asp-for="Telefone"></label>
+                        <input asp-for="Telefone" />
+                        <span asp-validation-for="Telefone"></span>
+                    </div>
+
+                    <div class="input-boxis">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" />
+                        <span asp-validation-for="Email"></span>
+                    </div>
+
+                    <div class="input-boxis">
+                        <label asp-for="DataNascimento"></label>
+                        <input asp-for="DataNascimento" />
+                        <span asp-validation-for="DataNascimento"></span>
+                    </div>
+
+                </div>
+
+                <div class="input-button">
+                    <button type="submit">Atualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const btnVoltar = document.getElementById('btnVoltar');
+        btnVoltar.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevenir o comportamento padrão do link
+            const contêiner = document.querySelector('.conteineres');
+            contêiner.classList.remove('show'); // Remove a classe 'show' para esconder o contêiner
+            setTimeout(() => {
+                window.location.href = btnVoltar.querySelector('a').href; // Redireciona para a página Index após um pequeno atraso para permitir a transição
+            }, 500); // Tempo em milissegundos, ajuste conforme necessário
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const contêiner = document.querySelector('.conteineres');
+        contêiner.classList.add('show');
+    });
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

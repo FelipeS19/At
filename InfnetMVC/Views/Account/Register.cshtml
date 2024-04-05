@@ -1,0 +1,69 @@
+﻿@model InfnetMVC.ViewModels.Registerview
+
+@{
+    ViewData["Title"] = "Registrar";
+}
+
+<body class="body2">
+    <div class="container3">
+
+        <div class="titulo-dado">
+            <h2 class="text-center titulo">Faça o login.</h2>
+        </div>
+
+        <div class="login-body">
+
+            <div class="dados-registrar">
+
+                <div class="formsw">
+                    <form method="post" class="needs-validation" novalidate>
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" placeholder="nome@exemplo.com" required />
+                            <label asp-for="Email">E-mail</label>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="senha" required />
+                            <label asp-for="Password">Senha</label>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="senha" required />
+                            <label asp-for="ConfirmPassword">Confirmar Senha</label>
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="FullName" class="form-control" aria-required="true" placeholder="Nome Completo" required />
+                            <label asp-for="FullName">Nome Completo</label>
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="PhoneNumber" class="form-control" aria-required="true" placeholder="(xx) xxxx-xxxx" required />
+                            <label asp-for="PhoneNumber">Número de Telefone</label>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="input-button">
+                            <button id="registerSubmit" type="submit">Login</button>
+                        </div>
+                    </form>
+                </div>
+
+                
+
+            </div>
+            <div class=" registre-se">
+                <p>Já está cadastrado, <a asp-area="" asp-controller="Account" asp-action="Login">Faça o login</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const containers = document.querySelectorAll('.container3');
+        containers.forEach(container => {
+            container.classList.add('show');
+        });
+    });
+</script>

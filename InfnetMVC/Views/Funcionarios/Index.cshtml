@@ -1,0 +1,133 @@
+﻿@model IEnumerable<InfnetMVC.Models.Funcionario>
+
+@{
+    ViewData["Title"] = "Funcionarios";
+}
+
+
+
+<body class="body2">
+
+    <div class="text-center titulo">
+        <h1>Funcionarios</h1>
+    </div>
+
+
+    <main class="table">
+
+        <section class="table__header">
+
+            <form asp-controller="Funcionarios" asp-action="Index" method="get">
+                <div class="input-group">
+                    <input type="text" id="searchInput" name="searchString" placeholder="Busca">
+                    <img src="images/search.png" alt="">
+                </div>
+            </form>
+        </section>
+
+
+        <section class="table-body">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Departamento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Endereco)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Telefone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            Nascimento
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Departamento.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Endereco)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Telefone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataNascimento)
+                            </td>
+                            <td>
+                                <nav id="nav1" class="nav">
+                                    <button id="btn" class="btn1">
+                                        <span id="hamburguer"></span>
+                                        </button>
+                                    <ul class="menu" >
+                                        <li><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></li>
+                                        <li><a asp-action="Details" asp-route-id="@item.Id">Details</a> </li>
+                                        <li><a asp-action="Delete" asp-route-id="@item.Id">Delete</a> </li>
+                                    </ul>
+                                </nav>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </section>
+        <div class="criar">
+            <p>
+                <button><a asp-action="Create">Incluir</a></button>
+            </p>
+        </div>
+    </main>
+</body>
+
+<script>
+    const btns = document.querySelectorAll(".btn1");
+
+    function togglemenu(event) {
+        const nav = event.target.closest('.nav');
+        nav.classList.toggle('active');
+    }
+
+    function closeMenuOutsideClick(event) {
+        btns.forEach(btn => {
+            const nav = btn.closest('.nav');
+            if (!nav.contains(event.target) && !event.target.matches('.btn1')) {
+                nav.classList.remove('active');
+            }
+        });
+    }
+
+    btns.forEach(btn => {
+        btn.addEventListener('click', togglemenu);
+    });
+
+    document.addEventListener('click', closeMenuOutsideClick);
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const containers = document.querySelectorAll('.table');
+        containers.forEach(container => {
+            container.classList.add('show');
+        });
+    });
+</script>

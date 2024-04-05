@@ -1,0 +1,50 @@
+﻿@model InfnetMVC.ViewModels.Login
+@{
+    ViewData["Title"] = "Entrar";
+}
+<body class="body2">
+    <div class="container2">
+        <div class="titulo-colum">
+            <h2 class="text-center titulo">Faça o login.</h2>
+        </div>
+        <div class="login-column">
+            <div class="dados">
+                <form id="account" method="post" class="needs-validation" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" placeholder="nome@exemplo.com" required />
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="senha" required />
+                        <label asp-for="Password" class="form-label">Senha</label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" asp-for="RememberMe" />
+                        <label class="form-check-label" asp-for="RememberMe">@Html.DisplayNameFor(m => m.RememberMe)</label>
+                    </div>
+                    <div>
+                        <div class="input-button">
+                            <button type="submit">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class=" registre-se">
+                <p>Ainda não tem cadastro, <a asp-area="" asp-controller="Account" asp-action="Register">registre-se ja</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const containers = document.querySelectorAll('.container2');
+        containers.forEach(container => {
+            container.classList.add('show');
+        });
+    });
+</script>

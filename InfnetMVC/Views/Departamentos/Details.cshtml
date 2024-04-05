@@ -1,0 +1,73 @@
+﻿@model InfnetMVC.Models.Departamento
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<body class="body2">
+
+    <div class="text-center titulo">
+        <h1>Departamento</h1>
+    </div>
+
+
+    <div class="conteiner-delete">
+
+        <div class="table__header">
+
+            <h5>Deseja realmente excluir?</h5>
+
+            <div class="voltar">
+                <button id="btnVoltar"><a asp-action="Index">Voltar</a></button>
+            </div>
+        </div>
+
+        <div class="infos">
+
+            <dl class="row detalhes">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Local)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Local)
+                </dd>
+            </dl>
+
+        </div>
+
+        <div class="criar">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <button><a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> </button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const btnVoltar = document.getElementById('btnVoltar');
+        btnVoltar.addEventListener('click', function (event) {
+            event.preventDefault();
+            const contêiner = document.querySelector('.conteiner-delete');
+            contêiner.classList.remove('show'); 
+            setTimeout(() => {
+                window.location.href = btnVoltar.querySelector('a').href;
+            }, 500);
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const contêiner = document.querySelector('.conteiner-delete');
+        contêiner.classList.add('show');
+    });
+</script>
+
